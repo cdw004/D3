@@ -82,8 +82,32 @@ var toolTip = d3.tip()
 
 chart.call(toolTip);
 
-chart
-.append("g")
+circles
+    .append("circle")
+    .attr("class", "state")  
+    .attr("cx", function(d, index) {
+        return xLinearScale(+d[currentAxisLabelX]);
+    })
+    .attr("cy", function(d, index) {
+        return yLinearScale(d.eDUCATION);
+    })
+    .attr("r", "15")
+    .style("fill","RED") 
+    .style("opacity", .9)
+    .style("stroke-width", ".2");
+
+circles
+    .append("text")
+    .attr("x", function(d, index) {
+        return xLinearScale(+d[currentAxisLabelX]- 0.08);
+    })
+    .attr("y", function(d, index) {
+        return yLinearScale(d.HIV - 0.2);
+    })
+    .text(function(d){
+        return d.abbr;
+    })
+    .attr("class", "circleText")
 
 };
 
